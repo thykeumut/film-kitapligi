@@ -1,0 +1,174 @@
+/* Çift dilli arayüz metinleri — lang: 'tr' | 'en' */
+
+export const LANGS = ['tr', 'en'];
+
+export const I18N = {
+  tr: {
+    appName: 'Film Kitaplığı',
+
+    searchPlaceholder: 'IMDb\u2019de ara veya kendi kitaplığında filtrele…',
+    langBtn: 'EN',
+
+    statTotal: 'Kitaplıkta',
+    statQueue: 'Sırada',
+    statWatched: 'İzlendi',
+
+    queueShelf: 'Sıradakiler',
+    watchedShelf: 'İzlendi — tozlu raflar',
+    countSuffix: 'yapım',
+    emptyQueue: 'Raf bomboş — Keşfet\u2019ten bir yapımla başla veya \u201cYapım Ekle\u201d ile kendin ekle.',
+    emptyWatched: 'Henüz tozlu kitap yok… İlk izlemeni ekle ki raflar tozlansın.',
+
+    exploreFilm: 'Keşfet — Top Filmler',
+    exploreSeries: 'Keşfet — Top Diziler',
+    exploreSearch: 'Arama — {q}',
+    exploreNoResults: 'Bu aramada sonuç bulunamadı.',
+    explorePreparing: 'Liste hazırlanıyor…',
+    exploreError: 'Liste alınamadı — bağlantını kontrol et.',
+    retry: 'Yeniden Dene',
+    tabFilm: 'Filmler',
+    tabSeries: 'Diziler',
+
+    badgeWatched: 'İzlendi',
+    labelFilm: 'Film',
+    labelSeries: 'Dizi',
+    typeFilm: 'FİLM',
+    typeSeries: 'DİZİ',
+
+    modalStatus: 'Durum',
+    modalQueue: 'Sırada',
+    modalWatched: 'İzlendi',
+    modalMyRating: 'Puanım:',
+    modalNote: 'Not (isteğe bağlı)',
+    modalNotePlaceholder: 'Bu yapımla ilgili düşüncelerin…',
+    modalSave: 'Kaydet',
+    modalAdd: 'Kitaplığa Ekle',
+    modalRemove: 'Kitaplıktan Çıkar',
+    modalOpenImdb: 'IMDb\u2019de Aç',
+    plotLoading: 'Özet yükleniyor…',
+    plotNone: 'Özet bulunamadı.',
+    plotFallbackNote: ' (Türkçe özeti yok)',
+
+    addTitle: 'Yapım Ekle',
+    addSub: 'Film veya dizi ara, seç, rafına yerleştir.',
+    addSearchLabel: 'IMDb\u2019de Ara',
+    addSearchPlaceholder: 'ör. Vikings, Dexter, The Mentalist…',
+    addSearching: 'Aranıyor…',
+    addNoResults: 'Sonuç yok — başlık yazıp elle ekleyebilirsin.',
+    addManual: 'Elle Ekle',
+    addSearchLabel: 'IMDb\u2019de Ara',
+    addStatus: 'Durum',
+    addCancel: 'Vazgeç',
+
+    authLogin: 'Giriş Yap',
+    authRegister: 'Kayıt Ol',
+    authUserLabel: 'Kullanıcı Adı',
+    authPassLabel: 'Şifre',
+    authSubmitLogin: 'Kitaplığa Gir',
+    authSubmitRegister: 'Kitaplığımı Oluştur',
+    authUserPlaceholder: 'ör. tozlu_kitapkurdu',
+    authNote: 'Her kullanıcının kendi rafları ve tozlu kitapları vardır. Veriler yalnızca bu cihazda saklanır.',
+    authErrorName: 'Kullanıcı adı en az 2 karakter olmalı.',
+    authErrorPass: 'Şifre en az 6 karakter olmalı.',
+    authErrorExists: 'Bu kullanıcı adı zaten alınmış.',
+    authErrorNoUser: 'Bu kullanıcı adı kayıtlı değil.',
+    authErrorPassWrong: 'Şifre hatalı.',
+    authErrorInvalid: 'Kullanıcı adı veya şifre hatalı.',
+    authErrorConfirm: 'E-posta doğrulaması açık — Supabase ayarlarından kapatın.',
+    authErrorUnknown: 'Beklenmeyen bir hata oluştu.',
+    authImport: 'Bu cihazdaki eski kitaplığında {n} yapım var — yeni hesabına taşısın mı?',
+    authTagline: 'İzlediklerin tozlansın, sıradakiler raflarda beklesin.',
+
+    logout: 'Çıkış',
+  },
+
+  en: {
+    appName: 'Film Library',
+
+    searchPlaceholder: 'Search on IMDb or filter your library…',
+    langBtn: 'TR',
+
+    statTotal: 'In library',
+    statQueue: 'To watch',
+    statWatched: 'Watched',
+
+    queueShelf: 'Up next',
+    watchedShelf: 'Watched — dusty shelves',
+    countSuffix: 'titles',
+    emptyQueue: 'Shelf is empty — pick something from Discover or add manually.',
+    emptyWatched: 'No dusty books yet… Add your first watch to let the dust settle.',
+
+    exploreFilm: 'Discover — Top Movies',
+    exploreSeries: 'Discover — Top Series',
+    exploreSearch: 'Search — {q}',
+    exploreNoResults: 'No results for this query.',
+    explorePreparing: 'Building the list…',
+    exploreError: 'Could not fetch the list — check your connection.',
+    retry: 'Retry',
+    tabFilm: 'Movies',
+    tabSeries: 'Series',
+
+    badgeWatched: 'Watched',
+    labelFilm: 'Film',
+    labelSeries: 'Series',
+    typeFilm: 'FILM',
+    typeSeries: 'SERIES',
+
+    modalStatus: 'Status',
+    modalQueue: 'To watch',
+    modalWatched: 'Watched',
+    modalMyRating: 'My rating:',
+    modalNote: 'Note (optional)',
+    modalNotePlaceholder: 'Your thoughts about this title…',
+    modalSave: 'Save',
+    modalAdd: 'Add to library',
+    modalRemove: 'Remove from library',
+    modalOpenImdb: 'Open on IMDb',
+    plotLoading: 'Loading synopsis…',
+    plotNone: 'No synopsis found.',
+    plotFallbackNote: ' (no Turkish synopsis — showing original)',
+
+    addTitle: 'Add a title',
+    addSub: 'Search a film or series, select it, and put it on your shelf.',
+    addSearchLabel: 'Search on IMDb',
+    addSearchPlaceholder: 'e.g. Vikings, Dexter, The Mentalist…',
+    addSearching: 'Searching…',
+    addNoResults: 'No results — type a title to add manually.',
+    addManual: 'Add manually',
+    addStatus: 'Status',
+    addCancel: 'Cancel',
+
+    authLogin: 'Log in',
+    authRegister: 'Sign up',
+    authUserLabel: 'Username',
+    authPassLabel: 'Password',
+    authSubmitLogin: 'Enter library',
+    authSubmitRegister: 'Create my library',
+    authUserPlaceholder: 'e.g. bookworm_42',
+    authNote: 'Every user has their own shelves and dusty books. Data stays on this device only.',
+    authErrorName: 'Username must be at least 2 characters.',
+    authErrorPass: 'Password must be at least 6 characters.',
+    authErrorExists: 'This username is already taken.',
+    authErrorNoUser: 'This username is not registered.',
+    authErrorPassWrong: 'Wrong password.',
+    authErrorInvalid: 'Wrong username or password.',
+    authErrorConfirm: 'Email confirmation is on — turn it off in Supabase settings.',
+    authErrorUnknown: 'Unexpected error.',
+    authImport: 'Your old local library has {n} titles — move them to your new account?',
+    authTagline: 'Let watched titles gather dust; keep the queue on the shelf.',
+
+    logout: 'Log out',
+  },
+};
+
+export function t(lang, key) {
+  const pack = I18N[lang] ?? I18N.tr;
+  return pack[key] ?? I18N.tr[key] ?? key;
+}
+
+export function interpolate(str, vars) {
+  return Object.keys(vars ?? {}).reduce(
+    (acc, k) => acc.replace(new RegExp(`\\{${k}\\}`, 'g'), vars[k]),
+    str,
+  );
+}
