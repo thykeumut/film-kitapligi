@@ -1,9 +1,12 @@
-/* IMDb Top listeleri — r.jina.ai reader üzerinden IMDb arama sayfaları.
-   Reader CORS açıktır; afiş URL'leri ve tt-id'ler markdown içinde gelir.
-   Sayfalama (start) reader'dan geçmediği için liste, tür sorgularının
-   birleşiminden kurulur: her türün kendi top 25'i.
+/* IMDb Top listeleri.
+   • Öncelik: repoya paketlenmiş statik liste (src/data/top-*.json)
+     → ziyaretçiye anında açılır, CDN/hız limiti sorunları olmaz.
+   • Paket yoksa: r.jina.ai okuyucusuyla canlı derleme
+     (IMDb arama sayfaları; afiş ve tt-id markdown içinde gelir). */
+import topFilmJson from '../data/top-film.json';
+import topDiziJson from '../data/top-dizi.json';
 
-   Sonuçlar 24 saat localStorage'da önbelleklenir. */
+const BUNDLED = { film: topFilmJson, dizi: topDiziJson };
 
 const CACHE_PREFIX = 'fk_chart_v2_';
 const TTL = 24 * 60 * 60 * 1000;
@@ -141,10 +144,18 @@ async function buildList(kind, onProgress) {
   return all;
 }
 
-/* liste getir (önbellekli). onProgress: {done, total} */
+/* liste getir. Sıra: önbellek → paketlenmiş statik → canlı derleme.
+   onProgress: {done, total} */
 export async function fetchChart(kind, onProgress) {
   const cached = readCache(kind);
   if (cached) return cached;
+
+  const bundled = BUNDLED[kind];
+  if (Array.isArray(bundled) && bundled.length > 50) {
+    writeCache(kind, bundled);
+    onProgress?.({ done: 1, total: 1 });
+    return bundled;
+  }
 
   const items = await buildList(kind, onProgress);
   writeCache(kind, items);
