@@ -50,9 +50,28 @@ function adopt(item) {
 }
 
 async function fetchSuggestion(q) {
-  const res = await fetch(suggestionUrl(q));
+  const url = suggestionUrl(q);
+
+  /* 1) doğrudan — sadece localhost türevi Origin'lerde CORS başlığı döner */
+  try {
+    const res = await fetch(url);
+    if (res.ok) {
+      const json = await res.json();
+      return pickSuggestions(json);
+    }
+  } catch {
+    /* CORS/Yasak → 2) jina okuyucu ile şeffaf proxy */
+  }
+
+  const res = await fetch(`https://r.jina.ai/${url}`);
   if (!res.ok) throw new Error(`IMDb sorgusu başarısız (${res.status})`);
-  const json = await res.json();
+  const txt = await res.text();
+  const idx = txt.indexOf('Markdown Content:');
+  const json = JSON.parse(txt.slice(txt.indexOf('{', idx)));
+  return pickSuggestions(json);
+}
+
+function pickSuggestions(json) {
   return (json.d ?? [])
     .filter((it) => !it.id.startsWith('nm') && (it.i?.imageUrl || it.y))
     .map(adopt);
