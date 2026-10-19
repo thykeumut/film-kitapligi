@@ -2,6 +2,8 @@
 
 İzlediğin ve izlemek istediğin filmler ile dizileri kaydettiğin, **IMDb verisiyle** çalışan kişisel izleme sitesi. React + Vite ile yazıldı.
 
+**Canlı:** <https://thykeumut.github.io/film-kitapligi/>
+
 ## Çalıştırma
 
 ```bash
