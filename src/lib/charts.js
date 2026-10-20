@@ -9,7 +9,7 @@ import topAnimeJson from '../data/top-anime.json';
 
 const BUNDLED = { film: topFilmJson, dizi: topDiziJson, anime: topAnimeJson };
 
-const CACHE_PREFIX = 'fk_chart_v2_';
+const CACHE_PREFIX = 'fk_chart_v3_';
 const TTL = 24 * 60 * 60 * 1000;
 
 const FILM_GENRES = [

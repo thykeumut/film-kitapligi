@@ -36,7 +36,7 @@ export default function App() {
   const fetchSeq = useRef(0); // geç fetch'in eski sekmeye yazmasını önler
   const [chart, setChart] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('fk_chart_view_v1')) ?? null;
+      return JSON.parse(localStorage.getItem('fk_chart_view_v2')) ?? null;
     } catch {
       return null;
     }
@@ -64,7 +64,7 @@ export default function App() {
       if (seq !== fetchSeq.current) return; // fetch sürerken sekme değişti
       setChart(items);
       setChartLoading(false);
-      localStorage.setItem('fk_chart_view_v1', JSON.stringify(items));
+      localStorage.setItem('fk_chart_view_v2', JSON.stringify(items));
     } catch {
       if (seq !== fetchSeq.current) return;
       if (force) {
