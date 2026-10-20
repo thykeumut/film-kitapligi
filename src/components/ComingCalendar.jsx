@@ -59,12 +59,12 @@ export default function ComingCalendar({ onPick, lang = 'tr' }) {
       <div className="calendar">
         {Array.from({ length: 3 }, (_, i) => (
           <section className="calendar-day" key={i}>
-            <h2 className="shelf-heading calendar-heading">
-              <span className="skeleton skeleton-line" />
+            <h2 className="calendar-heading">
+              <span className="skeleton-line" />
             </h2>
-            <div className="calendar-row">
-              {Array.from({ length: 5 }, (_, j) => (
-                <div key={j} className="skeleton calendar-skel" />
+            <div className="poster-grid calendar-grid">
+              {Array.from({ length: 6 }, (_, j) => (
+                <div key={j} className="skeleton" />
               ))}
             </div>
           </section>
@@ -81,13 +81,13 @@ export default function ComingCalendar({ onPick, lang = 'tr' }) {
     <div className="calendar">
       {groups.map((g) => (
         <section className="calendar-day" key={g.date}>
-          <h2 className="shelf-heading calendar-heading">
+          <h2 className="calendar-heading">
             {fmt(g.date)}
-            <span className="count">{g.items.length}</span>
+            <span className="count">{g.items.length} yapım</span>
           </h2>
-          <div className="calendar-row">
+          <div className="poster-grid calendar-grid">
             {g.items.map((m) => (
-              <div key={`${g.date}-${m.id}`} className="calendar-card">
+              <div key={`${g.date}-${m.id}`} className="calendar-slot">
                 <Book movie={m} onPick={onPick} lang={lang} />
                 {m.extra && (
                   <div className="upcoming-ep" title={m.extra}>
