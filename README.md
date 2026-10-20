@@ -42,7 +42,7 @@ panelde tanımlamak yeterlidir.
 - **Giriş / Kayıt** — her kullanıcı kendi kitaplığına sahiptir (veriler `localStorage`'da)
 - **IMDb'den canlı veri** — anahtarsız IMDb suggestion API'siyle arama + afişler
 - **Keşfet: Top Filmler / Top Diziler / İlk 500 Anime** — film ve diziler IMDb
-  arama sayfalarından derlenen (536 film + 260 dizi), animeler AniList GraphQL
+  arama sayfalarından derlenen (730 film + 345 dizi), animeler AniList GraphQL
   puan sıralamasından (ilk 500) gelir; listeler statik JSON olarak repoda
   paketlenir (anında yüklenir), yedek olarak canlı derleme yapılır
 - **Detay modalı** — afiş, yıl, tür, Wikipedia özeti, "IMDb'de Aç" bağlantısı
@@ -72,8 +72,8 @@ src/
 │   ├── charts.js           Top film/dizi/anime listeleri
 │   └── i18n.js             TR/EN arayüz metinleri
 ├── data/
-│   ├── top-film.json       paketlenmiş 536 film (IMDb)
-│   ├── top-dizi.json       paketlenmiş 260 dizi (IMDb)
+│   ├── top-film.json       paketlenmiş 730 film (IMDb)
+│   ├── top-dizi.json       paketlenmiş 345 dizi (IMDb)
 │   └── top-anime.json      paketlenmiş 500 anime (AniList)
 ├── App.jsx                 ana durum ve sayfa düzeni
 └── index.css               modern gece kitaplığı teması

@@ -1,5 +1,5 @@
-/* Film Kitaplığı — ana uygulama
-   Giriş → Kitaplık (Sırada / İzlendi) → Keşfet (IMDb Top listeleri / canlı arama)
+/* Seans — ana uygulama
+   Giriş → Kitaplık (Sırada / İzlendi) → Keşfet (Top film / dizi / anime, canlı arama)
    Kitaplık verisi: Supabase (bulut, VITE_SUPABASE_* doluysa) → yoksa yerel demo. */
 import { useEffect, useRef, useState } from 'react';
 import {
@@ -9,11 +9,13 @@ import {
 } from './lib/storage';
 import { searchImdb, getDetails } from './lib/imdb';
 import { fetchChart } from './lib/charts';
+import { unreadCount } from './lib/feedback';
 import { t, interpolate } from './lib/i18n';
 import Auth from './components/Auth';
 import Shelf from './components/Shelf';
 import BookModal from './components/BookModal';
 import AddMovieModal from './components/AddMovieModal';
+import { FeedbackCompose, FeedbackInbox } from './components/FeedbackModal';
 
 const EMPTY_DATA = { movies: [] };
 const LANG_KEY = 'fk_lang_v1';
@@ -25,6 +27,8 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [modal, setModal] = useState(null);
   const [addOpen, setAddOpen] = useState(false);
+  const [fbView, setFbView] = useState(null); // null | 'compose' | 'inbox'
+  const [unreadN, setUnreadN] = useState(0);
   const [lang, setLang] = useState(() => localStorage.getItem(LANG_KEY) === 'en' ? 'en' : 'tr');
 
   /* keşfet: Top filmler / Top diziler sekmeleri */
@@ -123,6 +127,13 @@ export default function App() {
       alive = false;
     };
   }, []);
+
+  /* okunmamış mesaj sayısı (mesaj kutusu rozeti) */
+  useEffect(() => {
+    if (!user) return undefined;
+    unreadCount().then((n) => setUnreadN(n)).catch(() => {});
+    return undefined;
+  }, [user, fbView]);
 
   /* kullanıcı değişince kitaplığı yükle */
   useEffect(() => {
@@ -299,6 +310,30 @@ export default function App() {
           >
             {t(lang, 'langBtn')}
           </button>
+          <button type="button" className="btn btn--ghost btn--small" onClick={() => setFbView('compose')}>
+            {t(lang, 'fbBtn')}
+          </button>
+          {user.username?.toLowerCase() === 'thyke' && (
+            <button
+              type="button"
+              className="btn btn--ghost btn--small"
+              onClick={() => setFbView('inbox')}
+              style={{ position: 'relative' }}
+            >
+              {t(lang, 'fbInbox')}
+              {unreadN > 0 && (
+                <span
+                  style={{
+                    position: 'absolute', top: -6, right: -6,
+                    background: '#e4583d', color: '#fff', borderRadius: 999,
+                    fontSize: '0.65rem', padding: '0.1rem 0.38rem', fontWeight: 700,
+                  }}
+                >
+                  {unreadN}
+                </span>
+              )}
+            </button>
+          )}
           <button type="button" className="btn btn--ghost btn--small" onClick={handleLogout}>
             {t(lang, 'logout')}
           </button>
@@ -416,6 +451,18 @@ export default function App() {
           onClose={() => setAddOpen(false)}
           lang={lang}
         />
+      )}
+
+      {fbView === 'compose' && (
+        <FeedbackCompose
+          open
+          lang={lang}
+          from={user?.username ?? null}
+          onClose={() => setFbView(null)}
+        />
+      )}
+      {fbView === 'inbox' && (
+        <FeedbackInbox open lang={lang} onClose={() => setFbView(null)} />
       )}
     </div>
   );

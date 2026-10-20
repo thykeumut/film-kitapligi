@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { login, register } from '../lib/storage';
 import { t } from '../lib/i18n';
+import { FeedbackCompose } from './FeedbackModal';
 
 export default function Auth({ onAuthed, lang = 'tr' }) {
   const [mode, setMode] = useState('login');
@@ -9,6 +10,7 @@ export default function Auth({ onAuthed, lang = 'tr' }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [fbOpen, setFbOpen] = useState(false);
 
   async function submit(e) {
     e.preventDefault();
@@ -34,7 +36,7 @@ export default function Auth({ onAuthed, lang = 'tr' }) {
     <div className="landing">
       <div className="landing-inner">
         <h1 className="landing-title">
-          {lang === 'tr' ? 'Film' : 'Film'} <span>{t(lang, 'appName').split(' ').pop()}</span>
+          {t(lang, 'appName')}
         </h1>
         <p className="landing-sub">{t(lang, 'authTagline')}</p>
 
@@ -89,6 +91,17 @@ export default function Auth({ onAuthed, lang = 'tr' }) {
         </div>
 
         <p className="auth-note">{t(lang, 'authNote')}</p>
+
+        <button
+          type="button"
+          className="btn btn--ghost btn--small"
+          onClick={() => setFbOpen(true)}
+        >
+          {t(lang, 'fbBtn')}
+        </button>
+        {fbOpen && (
+          <FeedbackCompose open lang={lang} from={null} onClose={() => setFbOpen(false)} />
+        )}
       </div>
     </div>
   );

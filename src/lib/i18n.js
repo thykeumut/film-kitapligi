@@ -84,6 +84,22 @@ export const I18N = {
     authTagline: 'İzlediklerin tozlansın, sıradakiler raflarda beklesin.',
 
     logout: 'Çıkış',
+
+    fbBtn: 'Geri Bildirim',
+    fbTitle: 'Geri Bildirim / Şikayet',
+    fbSub: 'Öneri, hata bildirimi ya da şikayet — sitenin sahibinin mesaj kutusuna düşer.',
+    fbWho: 'Kimden',
+    fbGuest: 'ziyaretçi',
+    fbBody: 'Mesajın',
+    fbPlaceholder: 'Ne düşünüyorsan yaz — mümkün olduğunca kısa ve net…',
+    fbSend: 'Gönder',
+    fbSending: 'Gönderiliyor…',
+    fbThanks: 'Geri dönüşün alındı — teşekkürler!',
+    fbErr: 'Gönderilemedi — birazdan tekrar dene.',
+    fbInbox: 'Gelen Mesajlar',
+    fbEmpty: 'Yeni mesaj yok.',
+    fbLoading: 'Mesajlar yükleniyor…',
+    fbMarkAll: 'Tümünü okundu işaretle',
   },
 
   en: {
@@ -166,6 +182,22 @@ export const I18N = {
     authTagline: 'Let watched titles gather dust; keep the queue on the shelf.',
 
     logout: 'Log out',
+
+    fbBtn: 'Feedback',
+    fbTitle: 'Feedback / Complaint',
+    fbSub: 'Ideas, bug reports, complaints — they land in the owner\u2019s inbox.',
+    fbWho: 'From',
+    fbGuest: 'guest',
+    fbBody: 'Your message',
+    fbPlaceholder: 'Write your thoughts — keep it short and clear…',
+    fbSend: 'Send',
+    fbSending: 'Sending…',
+    fbThanks: 'Feedback received — thank you!',
+    fbErr: 'Could not send — try again in a moment.',
+    fbInbox: 'Inbox',
+    fbEmpty: 'No messages yet.',
+    fbLoading: 'Loading messages…',
+    fbMarkAll: 'Mark all as read',
   },
 };
 
