@@ -100,6 +100,10 @@ export const I18N = {
     fbEmpty: 'Yeni mesaj yok.',
     fbLoading: 'Mesajlar yükleniyor…',
     fbMarkAll: 'Tümünü okundu işaretle',
+
+    sortAdded: 'Eklemeye göre',
+    sortBest: 'En beğendiklerim önce',
+    sortLowest: 'Beğenmediklerim önce',
   },
 
   en: {
@@ -198,6 +202,10 @@ export const I18N = {
     fbEmpty: 'No messages yet.',
     fbLoading: 'Loading messages…',
     fbMarkAll: 'Mark all as read',
+
+    sortAdded: 'Default order',
+    sortBest: 'Favorites first',
+    sortLowest: 'Least favorites first',
   },
 };
 

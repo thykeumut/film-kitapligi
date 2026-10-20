@@ -53,6 +53,11 @@ export default function Book({ movie, onPick, lang = 'tr' }) {
             <span className="card-badge">{t(lang, 'badgeWatched')}</span>
           </>
         )}
+        {(movie.rating ?? 0) > 0 && (
+          <span className="card-rating" aria-hidden="true">
+            {'\u2605'.repeat(movie.rating)}
+          </span>
+        )}
       </span>
       <span className="card-label">
         <span className="card-title">{movie.title}</span>

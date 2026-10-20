@@ -558,6 +558,42 @@ a {
   border: 1px solid rgba(232, 181, 76, 0.25);
 }
 
+/* kart üzerinde puan yıldızları */
+.card-rating {
+  position: absolute;
+  bottom: 0.55rem;
+  left: 0.55rem;
+  background: rgba(10, 8, 5, 0.72);
+  backdrop-filter: blur(6px);
+  color: #f5b942;
+  font-size: 0.66rem;
+  letter-spacing: 1.5px;
+  line-height: 1;
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 181, 76, 0.3);
+}
+
+/* raf sıralama seçeneği */
+.shelf-sort {
+  margin-left: auto;
+  align-self: center;
+  background: var(--panel-strong);
+  color: var(--text-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+.shelf-sort:hover,
+.shelf-sort:focus {
+  color: var(--text);
+  border-color: var(--line-strong);
+  outline: none;
+}
+
 /* iskelet yükleme */
 
 .skeleton {

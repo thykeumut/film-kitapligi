@@ -376,6 +376,7 @@ export default function App() {
           emptyText={t(lang, 'emptyWatched')}
           onPick={setModal}
           lang={lang}
+          sortable
         />
 
         {/* ----- keşfet: sekme + ızgara ----- */}
