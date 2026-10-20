@@ -58,6 +58,11 @@ export default function Book({ movie, onPick, lang = 'tr' }) {
             {'\u2605'.repeat(movie.rating)}
           </span>
         )}
+        {movie.note ? (
+          <span className="card-note" title={movie.note} aria-hidden="true">
+            {movie.note}
+          </span>
+        ) : null}
       </span>
       <span className="card-label">
         <span className="card-title">{movie.title}</span>

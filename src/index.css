@@ -594,6 +594,33 @@ a {
   outline: none;
 }
 
+/* açılır listede okunabilirlik: koyu zemin + açık yazı */
+.shelf-sort option {
+  background-color: #17181d;
+  color: #eef0f4;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.5rem;
+}
+
+/* kart üzerinde kişisel not */
+.card-note {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  max-width: 78%;
+  background: rgba(10, 8, 5, 0.78);
+  backdrop-filter: blur(6px);
+  color: #f2e6c9;
+  font-size: 0.68rem;
+  line-height: 1;
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 181, 76, 0.3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* iskelet yükleme */
 
 .skeleton {
