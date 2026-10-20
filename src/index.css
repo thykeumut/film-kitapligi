@@ -1240,3 +1240,52 @@ a {
 .modal-card .modal-type-badge {
   color: var(--modal-accent);
 }
+
+/* ---------------- YAKINDA TAKVİM ---------------- */
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.calendar-heading {
+  font-size: 1rem;
+}
+
+.calendar-heading .count {
+  margin-left: 0.5rem;
+  opacity: 0.55;
+}
+
+.calendar-row {
+  display: flex;
+  gap: 0.9rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+
+.calendar-card {
+  flex: 0 0 152px;
+  position: relative;
+}
+
+.calendar-card .card {
+  width: 100%;
+}
+
+.upcoming-ep {
+  margin-top: -0.15rem;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-skel {
+  flex: 0 0 152px;
+  aspect-ratio: 2 / 3;
+  border-radius: 12px;
+}

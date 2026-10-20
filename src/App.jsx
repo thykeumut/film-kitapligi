@@ -15,6 +15,7 @@ import Auth from './components/Auth';
 import Shelf from './components/Shelf';
 import BookModal from './components/BookModal';
 import AddMovieModal from './components/AddMovieModal';
+import ComingCalendar from './components/ComingCalendar';
 import { FeedbackCompose, FeedbackInbox } from './components/FeedbackModal';
 
 const EMPTY_DATA = { movies: [] };
@@ -79,6 +80,7 @@ export default function App() {
   };
 
   useEffect(() => {
+    if (exploreMode === 'soon') return; // takvim kendi verisini yükler
     loadChart(exploreMode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exploreMode]);
@@ -262,7 +264,9 @@ export default function App() {
       ? t(lang, 'exploreFilm')
       : exploreMode === 'anime'
         ? t(lang, 'exploreAnime')
-        : t(lang, 'exploreSeries'));
+        : exploreMode === 'soon'
+          ? t(lang, 'tabUpcoming')
+          : t(lang, 'exploreSeries'));
   const exploreLoading = q ? liveBusy : chartLoading;
 
   const modalIsNew = modal && !libraryIds.has(modal.id);
@@ -403,25 +407,36 @@ export default function App() {
             >
               {t(lang, 'tabAnime')}
             </button>
+            <button
+              type="button"
+              className={exploreMode === 'soon' ? 'active' : ''}
+              onClick={() => setExploreMode('soon')}
+            >
+              {t(lang, 'tabUpcoming')}
+            </button>
           </div>
         )}
 
-        <Shelf
-          title={exploreTitle}
-          items={exploreItems}
-          emptyText={
-            chartError
-              ? t(lang, 'exploreError')
-              : q
-                ? t(lang, 'exploreNoResults')
-                : t(lang, 'explorePreparing')
-          }
-          onPick={setModal}
-          lang={lang}
-          loading={exploreLoading}
-        />
+        {!q && exploreMode === 'soon' && <ComingCalendar onPick={setModal} lang={lang} />}
 
-        {chartError && !q && (
+        {!q && exploreMode !== 'soon' && (
+          <Shelf
+            title={exploreTitle}
+            items={exploreItems}
+            emptyText={
+              chartError
+                ? t(lang, 'exploreError')
+                : q
+                  ? t(lang, 'exploreNoResults')
+                  : t(lang, 'explorePreparing')
+            }
+            onPick={setModal}
+            lang={lang}
+            loading={exploreLoading}
+          />
+        )}
+
+        {chartError && !q && exploreMode !== 'soon' && (
           <div style={{ textAlign: 'center', marginTop: '-1.5rem' }}>
             <button
               type="button"

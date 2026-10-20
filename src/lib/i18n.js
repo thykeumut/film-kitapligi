@@ -104,6 +104,11 @@ export const I18N = {
     sortAdded: 'Eklemeye göre',
     sortBest: 'En beğendiklerim önce',
     sortLowest: 'Beğenmediklerim önce',
+
+    tabUpcoming: 'Yakında',
+    upcomingError: 'Takvim yüklenemedi.',
+    upcomingEmpty: 'Yakın gelecekte kayda değer bir yapım görünmüyor.',
+    upcomingFilm: 'Vizyon',
   },
 
   en: {
@@ -206,6 +211,11 @@ export const I18N = {
     sortAdded: 'Default order',
     sortBest: 'Favorites first',
     sortLowest: 'Least favorites first',
+
+    tabUpcoming: 'Coming soon',
+    upcomingError: 'Could not load the calendar.',
+    upcomingEmpty: 'Nothing notable coming up soon.',
+    upcomingFilm: 'Release',
   },
 };
 
