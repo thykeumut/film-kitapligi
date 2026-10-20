@@ -50,19 +50,23 @@ export default function Book({ movie, onPick, lang = 'tr' }) {
                 <span key={i} className="dust-dot" style={dustStyle(i, seq)} />
               ))}
             </span>
-            <span className="card-badge">{t(lang, 'badgeWatched')}</span>
           </>
+        )}
+        {(watched || movie.note) && (
+          <span className="card-chips">
+            {watched && <span className="card-badge">{t(lang, 'badgeWatched')}</span>}
+            {movie.note ? (
+              <span className="card-note" title={movie.note} aria-hidden="true">
+                {movie.note}
+              </span>
+            ) : null}
+          </span>
         )}
         {(movie.rating ?? 0) > 0 && (
           <span className="card-rating" aria-hidden="true">
             {'\u2605'.repeat(movie.rating)}
           </span>
         )}
-        {movie.note ? (
-          <span className="card-note" title={movie.note} aria-hidden="true">
-            {movie.note}
-          </span>
-        ) : null}
       </span>
       <span className="card-label">
         <span className="card-title">{movie.title}</span>

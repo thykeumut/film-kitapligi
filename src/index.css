@@ -544,9 +544,6 @@ a {
 }
 
 .card-badge {
-  position: absolute;
-  top: 0.55rem;
-  left: 0.55rem;
   background: rgba(10, 8, 5, 0.72);
   backdrop-filter: blur(6px);
   color: var(--accent-soft);
@@ -556,6 +553,19 @@ a {
   padding: 0.28rem 0.55rem;
   border-radius: 999px;
   border: 1px solid rgba(232, 181, 76, 0.25);
+}
+
+/* rozetler tek sırada alt alta: İzlendi + not üst üste binmez */
+.card-chips {
+  position: absolute;
+  top: 0.55rem;
+  left: 0.55rem;
+  right: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  pointer-events: none;
 }
 
 /* kart üzerinde puan yıldızları */
@@ -604,10 +614,7 @@ a {
 
 /* kart üzerinde kişisel not */
 .card-note {
-  position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
-  max-width: 78%;
+  max-width: 100%;
   background: rgba(10, 8, 5, 0.78);
   backdrop-filter: blur(6px);
   color: #f2e6c9;
