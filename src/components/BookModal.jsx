@@ -1,7 +1,73 @@
-/* Kitap detay modalı — afiş, dil-bilinçli özet, IMDb bağlantısı + durum/puan/not. */
+/* Kitap detay modalı — afiş, dil-bilinçli özet, IMDb bağlantısı + durum/puan/not.
+   Afişin baskın rengi çıkarılıp modal vurgusua (--modal-accent) uygulanır;
+   çıkarılamazsa tür rengine düşer (film: amber, dizi: turkuaz, anime: mor). */
 import { useEffect, useState } from 'react';
 import { getDetails, imdbUrl } from '../lib/imdb';
 import { t } from '../lib/i18n';
+
+const TYPE_ACCENTS = { film: '#e8b54c', dizi: '#7fd0cf', anime: '#d99cf2' };
+
+/* posterin baskın rengi — canvas ile; CORS kapalıysa sessizce null */
+function extractAccent(url) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    let done = false;
+    const finish = (c) => {
+      if (!done) {
+        done = true;
+        resolve(c);
+      }
+    };
+    img.onload = () => {
+      try {
+        const W = 24;
+        const H = 36;
+        const cv = document.createElement('canvas');
+        cv.width = W;
+        cv.height = H;
+        const ctx = cv.getContext('2d', { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0, W, H);
+        const px = ctx.getImageData(0, 0, W, H).data;
+        const buckets = new Map();
+        for (let i = 0; i < px.length; i += 4) {
+          const r = px[i] / 255;
+          const g = px[i + 1] / 255;
+          const b = px[i + 2] / 255;
+          const max = Math.max(r, g, b);
+          const min = Math.min(r, g, b);
+          const l = (max + min) / 2;
+          const s = max - min;
+          if (s < 0.06 || l < 0.12 || l > 0.9) continue; // soluk/siyah/beyaz alanları yok say
+          let h;
+          if (max === r) h = 60 * (((g - b) / s) % 6);
+          else if (max === g) h = 60 * ((b - r) / s + 2);
+          else h = 60 * ((r - g) / s + 4);
+          if (h < 0) h += 360;
+          const bucket = Math.round(h / 15) * 15;
+          const score = s * (1 - Math.abs(l - 0.5) * 2);
+          const e = buckets.get(bucket) ?? { w: 0, h: 0, s: 0, l: 0 };
+          e.w += score;
+          e.h += h * score;
+          e.s += s * score;
+          e.l += l * score;
+          buckets.set(bucket, e);
+        }
+        let best = null;
+        for (const e of buckets.values()) if (!best || e.w > best.w) best = e;
+        if (!best || best.w < 0.5) return finish(null);
+        const sat = Math.min(0.82, Math.max(0.4, best.s / best.w));
+        const lig = Math.min(0.6, Math.max(0.46, best.l / best.w));
+        finish(`hsl(${Math.round(best.h / best.w)} ${Math.round(sat * 100)}% ${Math.round(lig * 100)}%)`);
+      } catch {
+        finish(null);
+      }
+    };
+    img.onerror = () => finish(null);
+    setTimeout(() => finish(null), 6000);
+    img.src = url;
+  });
+}
 
 export default function BookModal({ movie, isNew, onSave, onRemove, onClose, lang = 'tr' }) {
   const [status, setStatus] = useState(movie.status ?? 'towatch');
@@ -9,6 +75,7 @@ export default function BookModal({ movie, isNew, onSave, onRemove, onClose, lan
   const [rating, setRating] = useState(movie.rating ?? 0);
   const [details, setDetails] = useState(null);
   const [plotState, setPlotState] = useState('loading'); // loading | ok | none
+  const [tint, setTint] = useState(null);
 
   useEffect(() => {
     setStatus(movie.status ?? 'towatch');
@@ -32,6 +99,20 @@ export default function BookModal({ movie, isNew, onSave, onRemove, onClose, lan
     };
   }, [movie, lang]);
 
+  /* afişin baskın rengi → modal vurgusu */
+  useEffect(() => {
+    setTint(null);
+    let alive = true;
+    if (movie.image) {
+      extractAccent(movie.image).then((c) => {
+        if (alive) setTint(c);
+      });
+    }
+    return () => {
+      alive = false;
+    };
+  }, [movie.id, movie.image]);
+
   function save() {
     onSave({
       ...movie,
@@ -54,7 +135,10 @@ export default function BookModal({ movie, isNew, onSave, onRemove, onClose, lan
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="modal-card modal-card--rich">
+      <div
+        className="modal-card modal-card--rich"
+        style={{ '--modal-accent': tint ?? TYPE_ACCENTS[movie.type] ?? TYPE_ACCENTS.film }}
+      >
         <button type="button" className="modal-close-x" onClick={onClose} aria-label="Kapat">
           ×
         </button>
@@ -70,7 +154,10 @@ export default function BookModal({ movie, isNew, onSave, onRemove, onClose, lan
           <div className="modal-info">
             <h2 className="modal-title">{shown.title}</h2>
             <p className="modal-sub">
-              {shown.year ?? '—'} · {shown.type === 'anime' ? t(lang, 'labelAnime') : shown.type === 'dizi' ? t(lang, 'labelSeries') : t(lang, 'labelFilm')}
+              {shown.year ?? '—'} ·{' '}
+              <span className={`type-tag t-${shown.type}`}>
+                {shown.type === 'anime' ? t(lang, 'labelAnime') : shown.type === 'dizi' ? t(lang, 'labelSeries') : t(lang, 'labelFilm')}
+              </span>
               {isNew ? ` · ${t(lang, 'notInLibrary')}` : ''}
             </p>
 

@@ -225,6 +225,33 @@ a {
   box-shadow: 0 0 0 3px rgba(232, 181, 76, 0.15);
 }
 
+/* textarea — input ile aynı aile; geri bildirim kutusunun görünümü */
+.field textarea {
+  width: 100%;
+  background: var(--bg-0);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  resize: vertical;
+  min-height: 110px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232, 181, 76, 0.15);
+}
+
+.field textarea::placeholder {
+  color: var(--text-dim);
+  opacity: 0.7;
+}
+
 .auth-error {
   background: rgba(224, 122, 106, 0.1);
   border: 1px solid rgba(224, 122, 106, 0.35);
@@ -1165,4 +1192,51 @@ a {
     transition: none !important;
     animation: none !important;
   }
+}
+
+/* ---------------- KURGUSAL VURGU ---------------- */
+
+/* tür-özgü renkler: film = amber, dizi = turkuaz, anime = mor */
+.type-tag {
+  font-weight: 700;
+}
+.type-tag.t-film { color: #e8b54c; }
+.type-tag.t-dizi { color: #7fd0cf; }
+.type-tag.t-anime { color: #d99cf2; }
+
+/* modal vurgusu: varsayılan amber; afiş rengi çıkarınca canlıya geçer */
+.modal-card {
+  --modal-accent: var(--accent);
+}
+.modal-card .modal-title {
+  color: var(--modal-accent);
+}
+.modal-card .modal-sub {
+  color: var(--modal-accent);
+  opacity: 0.85;
+}
+.modal-card .imdb-link {
+  color: var(--modal-accent);
+  border-color: color-mix(in srgb, var(--modal-accent) 40%, transparent);
+}
+.modal-card .status-seg button.active {
+  color: var(--modal-accent);
+  background: color-mix(in srgb, var(--modal-accent) 15%, transparent);
+}
+.modal-card .star.lit {
+  color: var(--modal-accent);
+}
+.modal-card .btn {
+  background: linear-gradient(
+    180deg,
+    var(--modal-accent) 0%,
+    color-mix(in srgb, var(--modal-accent) 76%, black) 100%
+  );
+}
+.modal-card .modal-poster {
+  border-color: color-mix(in srgb, var(--modal-accent) 45%, var(--line-strong));
+  box-shadow: 0 0 38px -16px var(--modal-accent);
+}
+.modal-card .modal-type-badge {
+  color: var(--modal-accent);
 }
