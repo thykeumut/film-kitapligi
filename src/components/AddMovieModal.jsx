@@ -109,7 +109,7 @@ export default function AddMovieModal({ onAdd, onClose, lang = 'tr' }) {
                   <span className="search-item-txt">
                     <strong>{r.title}</strong>
                     <small>
-                      {r.year ?? '—'} · {r.type === 'dizi' ? t(lang, 'labelSeries') : t(lang, 'labelFilm')}
+                      {r.year ?? '—'} · {r.type === 'anime' ? t(lang, 'labelAnime') : r.type === 'dizi' ? t(lang, 'labelSeries') : t(lang, 'labelFilm')}
                     </small>
                   </span>
                 </button>

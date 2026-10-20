@@ -14,7 +14,7 @@ create table if not exists public.movies (
   added_at bigint default 0,                          -- epoch ms
   watched_at bigint,                                  -- epoch ms (null = henüz izlenmedi)
   primary key (user_id, id),
-  constraint movies_type check (type in ('film', 'dizi')),
+  constraint movies_type check (type in ('film', 'dizi', 'anime')),
   constraint movies_status check (status in ('towatch', 'watched')),
   constraint movies_rating check (rating between 0 and 5)
 );

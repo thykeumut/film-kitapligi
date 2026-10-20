@@ -57,7 +57,7 @@ export default function Book({ movie, onPick, lang = 'tr' }) {
       <span className="card-label">
         <span className="card-title">{movie.title}</span>
         <span className="card-meta">
-          {(movie.type === 'dizi' ? t(lang, 'typeSeries') : t(lang, 'typeFilm'))}
+          {(movie.type === 'anime' ? t(lang, 'typeAnime') : movie.type === 'dizi' ? t(lang, 'typeSeries') : t(lang, 'typeFilm'))}
           {movie.year ? ` \u00b7 ${movie.year}` : ''}
         </span>
       </span>

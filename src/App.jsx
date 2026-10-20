@@ -249,7 +249,9 @@ export default function App() {
     ? interpolate(t(lang, 'exploreSearch'), { q: query })
     : (exploreMode === 'film'
       ? t(lang, 'exploreFilm')
-      : t(lang, 'exploreSeries'));
+      : exploreMode === 'anime'
+        ? t(lang, 'exploreAnime')
+        : t(lang, 'exploreSeries'));
   const exploreLoading = q ? liveBusy : chartLoading;
 
   const modalIsNew = modal && !libraryIds.has(modal.id);
@@ -357,6 +359,13 @@ export default function App() {
               onClick={() => setExploreMode('dizi')}
             >
               {t(lang, 'tabSeries')}
+            </button>
+            <button
+              type="button"
+              className={exploreMode === 'anime' ? 'active' : ''}
+              onClick={() => setExploreMode('anime')}
+            >
+              {t(lang, 'tabAnime')}
             </button>
           </div>
         )}

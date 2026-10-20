@@ -5,8 +5,9 @@
      (IMDb arama sayfaları; afiş ve tt-id markdown içinde gelir). */
 import topFilmJson from '../data/top-film.json';
 import topDiziJson from '../data/top-dizi.json';
+import topAnimeJson from '../data/top-anime.json';
 
-const BUNDLED = { film: topFilmJson, dizi: topDiziJson };
+const BUNDLED = { film: topFilmJson, dizi: topDiziJson, anime: topAnimeJson };
 
 const CACHE_PREFIX = 'fk_chart_v2_';
 const TTL = 24 * 60 * 60 * 1000;

@@ -70,7 +70,7 @@ export default function BookModal({ movie, isNew, onSave, onRemove, onClose, lan
           <div className="modal-info">
             <h2 className="modal-title">{shown.title}</h2>
             <p className="modal-sub">
-              {shown.year ?? '—'} · {shown.type === 'dizi' ? t(lang, 'labelSeries') : t(lang, 'labelFilm')}
+              {shown.year ?? '—'} · {shown.type === 'anime' ? t(lang, 'labelAnime') : shown.type === 'dizi' ? t(lang, 'labelSeries') : t(lang, 'labelFilm')}
               {isNew ? ` · ${t(lang, 'notInLibrary')}` : ''}
             </p>
 

@@ -1,6 +1,6 @@
-# Film Kitaplığı
+# Seans
 
-İzlediğin ve izlemek istediğin filmler ile dizileri kaydettiğin, **IMDb verisiyle** çalışan kişisel izleme sitesi. React + Vite ile yazıldı.
+İzlediğin ve izlemek istediğin filmler, diziler ve animeleri kaydettiğin, **IMDb + AniList verisiyle** çalışan kişisel izleme sitesi. React + Vite ile yazıldı. (Eski adı: Film Kitaplığı)
 
 **Canlı:** <https://thykeumut.github.io/film-kitapligi/>
 
@@ -41,7 +41,10 @@ panelde tanımlamak yeterlidir.
 
 - **Giriş / Kayıt** — her kullanıcı kendi kitaplığına sahiptir (veriler `localStorage`'da)
 - **IMDb'den canlı veri** — anahtarsız IMDb suggestion API'siyle arama + afişler
-- **Keşfet: Top Filmler / Top Diziler** — IMDb arama sayfalarından derlenen ~500 film ve ~250 dizi; tür bazlı sorgularla birleştirilir, 24 saat önbelleklenir
+- **Keşfet: Top Filmler / Top Diziler / İlk 500 Anime** — film ve diziler IMDb
+  arama sayfalarından derlenen (536 film + 260 dizi), animeler AniList GraphQL
+  puan sıralamasından (ilk 500) gelir; listeler statik JSON olarak repoda
+  paketlenir (anında yüklenir), yedek olarak canlı derleme yapılır
 - **Detay modalı** — afiş, yıl, tür, Wikipedia özeti, "IMDb'de Aç" bağlantısı
 - **Sırada / İzlendi rafları** — durum, 1-5 yıldız puanı, kişisel not
 - **Tozlu kitap konsepti** — "İzlendi" işaretlenen yapımlar solgunlaşır; üzerinde uçuşan toz zerreleri
@@ -66,8 +69,12 @@ src/
 │   ├── storage.js          kullanıcı + kitaplık deposu (Supabase / yerel)
 │   ├── supabase.js         Supabase istemcisi (.env ile bulut modu)
 │   ├── imdb.js             IMDb suggestion API + Wikipedia özeti + önbellek
-│   ├── charts.js           Top film/dizi listeleri (tür bazlı derleme)
+│   ├── charts.js           Top film/dizi/anime listeleri
 │   └── i18n.js             TR/EN arayüz metinleri
+├── data/
+│   ├── top-film.json       paketlenmiş 536 film (IMDb)
+│   ├── top-dizi.json       paketlenmiş 260 dizi (IMDb)
+│   └── top-anime.json      paketlenmiş 500 anime (AniList)
 ├── App.jsx                 ana durum ve sayfa düzeni
 └── index.css               modern gece kitaplığı teması
 ```

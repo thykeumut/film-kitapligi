@@ -4,7 +4,7 @@ export const LANGS = ['tr', 'en'];
 
 export const I18N = {
   tr: {
-    appName: 'Film Kitaplığı',
+    appName: 'Seans',
 
     searchPlaceholder: 'IMDb\u2019de ara veya kendi kitaplığında filtrele…',
     langBtn: 'EN',
@@ -21,6 +21,7 @@ export const I18N = {
 
     exploreFilm: 'Keşfet — Top Filmler',
     exploreSeries: 'Keşfet — Top Diziler',
+    exploreAnime: 'Keşfet — İlk 500 Anime',
     exploreSearch: 'Arama — {q}',
     exploreNoResults: 'Bu aramada sonuç bulunamadı.',
     explorePreparing: 'Liste hazırlanıyor…',
@@ -28,12 +29,15 @@ export const I18N = {
     retry: 'Yeniden Dene',
     tabFilm: 'Filmler',
     tabSeries: 'Diziler',
+    tabAnime: 'Anime',
 
     badgeWatched: 'İzlendi',
     labelFilm: 'Film',
     labelSeries: 'Dizi',
+    labelAnime: 'Anime',
     typeFilm: 'FİLM',
     typeSeries: 'DİZİ',
+    typeAnime: 'ANİME',
 
     modalStatus: 'Durum',
     modalQueue: 'Sırada',
@@ -83,7 +87,7 @@ export const I18N = {
   },
 
   en: {
-    appName: 'Film Library',
+    appName: 'Seans',
 
     searchPlaceholder: 'Search on IMDb or filter your library…',
     langBtn: 'TR',
@@ -100,6 +104,7 @@ export const I18N = {
 
     exploreFilm: 'Discover — Top Movies',
     exploreSeries: 'Discover — Top Series',
+    exploreAnime: 'Discover — Top 500 Anime',
     exploreSearch: 'Search — {q}',
     exploreNoResults: 'No results for this query.',
     explorePreparing: 'Building the list…',
@@ -107,12 +112,15 @@ export const I18N = {
     retry: 'Retry',
     tabFilm: 'Movies',
     tabSeries: 'Series',
+    tabAnime: 'Anime',
 
     badgeWatched: 'Watched',
     labelFilm: 'Film',
     labelSeries: 'Series',
+    labelAnime: 'Anime',
     typeFilm: 'FILM',
     typeSeries: 'SERIES',
+    typeAnime: 'ANIME',
 
     modalStatus: 'Status',
     modalQueue: 'To watch',
