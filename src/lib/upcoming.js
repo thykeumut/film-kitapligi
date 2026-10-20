@@ -115,7 +115,9 @@ async function fetchTVMazeSeries(days) {
         items.push({
           id: sh.externals.imdb,
           title: sh.name ?? 'Bilinmeyen',
-          year: sh.premiered ? Number(sh.premiered.slice(0, 4)) : null,
+          /* ilk yayın yılı gostermez: takvimdeki kartlar "dizi"
+             etiketi + bölüm bilgisiyle oluş */
+          year: null,
           type: 'dizi',
           image: sh.image.medium,
           extra: e.name && e.name !== 'Episode 205' ? `${ep} · ${e.name}` : ep,
